@@ -5,7 +5,7 @@ from keras.layers import Dense
 import yfinance as yf
 
 # Define the parameters of the binomial tree
-initial_price = yf.Ticker("AAPL").history(period="1d")["Close"][0]  # current price of Glencore shares
+initial_price = yf.Ticker("AAPL").history(period="1d")["Close"][0]  # current price of shares
 up_factor = 1.2
 down_factor = 0.8
 num_steps = 10
@@ -45,4 +45,4 @@ for i in range(num_steps):
     else:
         current_price *= up_factor
 
-print("The optimal hedging combination is to hold {} units of Glencore shares and {} units of the derivative.".format(current_price, model.predict(np.array([[initial_price, tree[0,0], tree[0,1]]]))[0][0]))
+print("The optimal hedging combination is to hold {} units of shares and {} units of the derivative.".format(current_price, model.predict(np.array([[initial_price, tree[0,0], tree[0,1]]]))[0][0]))
